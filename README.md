@@ -31,7 +31,8 @@ Library for setting and detecting maintenance time for a service.
       "To": {
         "Weekday": "Monday",
         "Time": "19:00"
-      }
+      },
+      "Disabled": true //to disable the entry
     }
   ]
 ```

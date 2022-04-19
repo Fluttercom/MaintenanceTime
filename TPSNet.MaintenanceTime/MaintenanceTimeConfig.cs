@@ -18,6 +18,8 @@ namespace MaintenanceTime
             DateTime min = DateTime.MinValue;
             foreach (var entry in this)
             {
+                if (entry.Disabled)
+                    continue;
                 var next = entry.GetNextWorkingTime(current);
                 if (min == DateTime.MinValue || min > next)
                     min = next;
@@ -30,6 +32,8 @@ namespace MaintenanceTime
             DateTime min = DateTime.MinValue;
             foreach (var entry in this)
             {
+                if (entry.Disabled)
+                    continue;
                 var next = entry.GetNextMaintTime(current);
                 if (min == DateTime.MinValue || min > next)
                     min = next;
@@ -42,6 +46,7 @@ namespace MaintenanceTime
     {
         public WeekdayTimeEntry From { get; set; }
         public WeekdayTimeEntry To { get; set; }
+        public bool Disabled { get; set; }
 
         public MaintenanceTimeConfigEntry() {  }
 

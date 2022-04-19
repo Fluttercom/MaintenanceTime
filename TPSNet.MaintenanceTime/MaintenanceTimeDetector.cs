@@ -33,7 +33,7 @@ namespace MaintenanceTime
         {
             if (!currentTime.HasValue)
                 currentTime = DateTime.Now;
-            return !_settings.Any(s => s.IsInside(currentTime.Value));
+            return !_settings.Any(s => !s.Disabled && s.IsInside(currentTime.Value));
         }
 
         public bool IsMaintenanceTime(DateTime? currentTime = null)
@@ -49,6 +49,8 @@ namespace MaintenanceTime
                 return;
             }
             DateTime nearest = _settings.GetNearestWorkingTime(currentTime);
+            if (nearest == DateTime.MinValue)
+                return;
             var delay = nearest.Subtract(currentTime);
             try
             {
@@ -67,6 +69,8 @@ namespace MaintenanceTime
                 return;
             }
             DateTime nearest = _settings.GetNearestMaintTime(currentTime);
+            if (nearest == DateTime.MinValue)
+                return;
             var delay = nearest.Subtract(currentTime);
             try
             {

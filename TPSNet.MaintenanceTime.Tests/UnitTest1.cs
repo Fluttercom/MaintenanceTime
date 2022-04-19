@@ -68,5 +68,16 @@ namespace MaintenanceTime.Tests
             //Task.Run(() => detector.DelayToWorkingTime(cts.Token));
             //cts.Cancel();
         }
+
+        [TestMethod]
+        public void DisabledEntry()
+        {
+            var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+            MaintenanceTimeDetector detector = new MaintenanceTimeDetector(config, "DisabledMaintenance");
+            Assert.IsTrue(detector.IsWorkingTime());
+            var ts = new CancellationTokenSource(1000);
+            detector.DelayToMaintenanceTime(ts.Token).Wait();
+            Assert.AreEqual(DateTime.MinValue, detector.NextMaintenance);
+        }
     }
 }
