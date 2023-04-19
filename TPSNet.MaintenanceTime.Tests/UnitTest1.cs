@@ -4,7 +4,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MaintenanceTime.Tests
+namespace TPSNet.MaintenanceTime.Tests
 {
     [TestClass]
     public class UnitTest1
@@ -41,12 +41,27 @@ namespace MaintenanceTime.Tests
         }
 
         [TestMethod]
+        public void DailyAndWeeklyMaintenance()
+        {
+            var config = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+            MaintenanceTimeDetector detector = new MaintenanceTimeDetector(config, "DailyAndWeekly");
+            DateTime maint = DateTime.Today.AddHours(1);
+            Assert.IsTrue(detector.IsMaintenanceTime(maint));
+            maint = DateTime.Today.AddHours(12);
+            Assert.IsFalse(detector.IsMaintenanceTime(maint));
+            maint = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek).AddDays(5).AddHours(12);
+            Assert.IsTrue(detector.IsMaintenanceTime(maint));
+            maint = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek).AddDays(7).AddHours(20);
+            Assert.IsTrue(detector.IsMaintenanceTime(maint));
+        }
+
+        [TestMethod]
         public void ManualCreation()
         {
             MaintenanceTimeConfig config = new MaintenanceTimeConfig
             {
                 new MaintenanceTimeConfigEntry{From = new WeekdayTimeEntry("17:00", "Friday"), To = new WeekdayTimeEntry("06:00", "Monday")},
-                new MaintenanceTimeConfigEntry("Tuesday, 6:00", "Wednesday,6:00")
+                new MaintenanceTimeConfigEntry("Tuesday, 6:00:00", "Wednesday,6:00:00")
             };
             MaintenanceTimeDetector detector = new MaintenanceTimeDetector(config);
             var weekStart = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek);

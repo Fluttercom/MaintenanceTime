@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MaintenanceTime
+namespace TPSNet.MaintenanceTime
 {
     public class MaintenanceTimeDetector
     {
@@ -79,6 +79,12 @@ namespace MaintenanceTime
             catch (TaskCanceledException)
             {
             }
+        }
+
+        public static bool IsInMaintenance(string from, string to)
+        {
+            var cfg = new MaintenanceTimeConfigEntry(from, to);
+            return cfg.IsInside(DateTime.Now);
         }
 
 

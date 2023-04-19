@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MaintenanceTime
+namespace TPSNet.MaintenanceTime
 {
     /// <summary>
     /// Maintenance configuration.
