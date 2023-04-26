@@ -12,7 +12,7 @@ Library for setting and detecting maintenance time for a service.
 
 # Config section reference
 ```
-  "MaintenanceTime": [ //array of time sections, please don't overlap
+  "MaintenanceTime": [ //array of time sections
     {
       "From": { //Beginning of maintenance
         "Weekday": "Friday", //Day of week (weekly). Skip this for daily maintenance.

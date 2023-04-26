@@ -4,7 +4,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace TPSNet.MaintenanceTime.Tests
+namespace FlutterEffect.MaintenanceTime.Tests
 {
     [TestClass]
     public class UnitTest1
