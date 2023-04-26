@@ -1,13 +1,18 @@
 # Introduction 
 Library for setting and detecting maintenance time for a service.
 
+[![Nuget](https://img.shields.io/nuget/v/FlutterEffect.MaintenanceTime)](https://www.nuget.org/packages/FlutterEffect.MaintenanceTime/)
+
 # Getting Started
-1.	Create MaintenanceTime section in your config file
-2.	In Startup.cs call `services.AddSingleton(new MaintenanceTimeDetector(Configuration, "MaintenanceTime"));`
-3.	Import MaintenanceTimeDetector instance in your service
+1.  Install FlutterEffect.MaintenanceTime nuget package
+2.	Create MaintenanceTime section in your config file
+3.	In Startup.cs call `services.AddSingleton(new MaintenanceTimeDetector(Configuration, "MaintenanceTime"));`
+4.	Import MaintenanceTimeDetector instance in your service
+
 --or--
-1. Create MaintenanceTimeDetector as a list of MaintenanceTimeConfigEntry
-2. You can create MaintenanceTimeConfigEntry by using any WeekdayTimeEntry constructor, or by specifying maintenance time in format "Weekday, Timespan":
+
+2. Create MaintenanceTimeDetector as a list of MaintenanceTimeConfigEntry
+3. You can create MaintenanceTimeConfigEntry by using any WeekdayTimeEntry constructor, or by specifying maintenance time in format "Weekday, Timespan":
     `new MaintenanceTimeConfigEntry("Tuesday, 6:00", "Wednesday,6:00")`
 
 # Config section reference
