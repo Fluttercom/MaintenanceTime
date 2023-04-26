@@ -5,10 +5,12 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageId>FlutterEffect.MaintenanceTIme</PackageId>
     <Title>Maintenance Time</Title>
+    <VersionPrefix>1.0.1</VersionPrefix>
     <Authors>FlutterEffect</Authors>
     <Description>Library for setting and detecting maintenance time for a service.</Description>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/Fluttercom/MaintenanceTime</PackageProjectUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
